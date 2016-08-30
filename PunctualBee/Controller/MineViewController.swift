@@ -12,7 +12,9 @@ class MineViewController: UIViewController {
 
   var table:UITableView!
   
-  var offlineMap:BMKOfflineMap! // 离线地图服务
+  var offlineMap:BMKOfflineMap!   // 离线地图服务
+  
+  var record:BMKOLSearchRecord!   // 离线地图信息
   
   override func viewDidLoad() {
       super.viewDidLoad()
@@ -66,6 +68,11 @@ extension MineViewController:UITableViewDelegate, UITableViewDataSource, BMKOffl
     if cell == nil {
       cell = UITableViewCell(style: .Value1, reuseIdentifier: "cell")
     }
+    
+    let records = offlineMap.searchCity("北京") as NSArray
+    let oneRecord = records.objectAtIndex(0) as! BMKOLSearchRecord
+    record = oneRecord
+    
     switch indexPath.row {
     case 0:
       if indexPath.section == 0 {
@@ -73,7 +80,7 @@ extension MineViewController:UITableViewDelegate, UITableViewDataSource, BMKOffl
         cell!.textLabel!.backgroundColor = UIColor.cyanColor()
         cell!.backgroundView?.backgroundColor = UIColor.redColor()
         cell!.textLabel?.backgroundColor = UIColor.cyanColor()
-        cell!.detailTextLabel?.text = "0M\\23M"
+        cell!.detailTextLabel?.text = NSString(format: "大约%.1fM", CGFloat(record.size) / 1024.0 / 1024.0) as String
       }
       else {
         cell!.textLabel!.text = "关于"
@@ -90,13 +97,9 @@ extension MineViewController:UITableViewDelegate, UITableViewDataSource, BMKOffl
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if indexPath.row == 0 && indexPath.section == 0 {
-//      NSArray* records = [_offlineMap searchCity:@"北京"];
-//      BMKOLSearchRecord* oneRecord = [records objectAtIndex:0];
-//      [_offlineMap start:oneRecord.cityID];
-      let records = offlineMap.searchCity("北京") as NSArray
-      let oneRecord = records.objectAtIndex(0) as! BMKOLSearchRecord
-      offlineMap.remove(oneRecord.cityID)
-      offlineMap.start(oneRecord.cityID)
+      
+      offlineMap.remove(record.cityID)
+      offlineMap.start(record.cityID)
     }
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
@@ -116,7 +119,12 @@ extension MineViewController:UITableViewDelegate, UITableViewDataSource, BMKOffl
         }
         let downloadProgress = NSString(format: "%.1fM\\%.1fM", size, total)
         cell.detailTextLabel?.text = downloadProgress as String
+        
+        if updateInfo.ratio == 100 {
+          cell.detailTextLabel?.text = ""
+        }
       }
+      
       return
     }
     
