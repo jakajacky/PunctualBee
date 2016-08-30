@@ -153,7 +153,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BMKGeneralDelegate, CLLoc
     let firstVC = ViewController()
     let navigationVC = UINavigationController(rootViewController: firstVC)
     
-    let secondVC = UIViewController()
+    let secondVC = MineViewController()
     secondVC.view.backgroundColor = UIColor.whiteColor()
     let navigationVC1 = UINavigationController(rootViewController: secondVC)
     
