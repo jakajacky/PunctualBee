@@ -253,45 +253,47 @@ BMKMapViewDelegate, BMKLocationServiceDelegate, BMKBusLineSearchDelegate, BMKPoi
       AudioServicesPlaySystemSound(1150)
       
       // 3.调用通知
-      if UIApplication.sharedApplication().applicationIconBadgeNumber == 0 {
-        let queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL)
-        dispatch_sync(queue, { 
-          // 1.创建本地通知
-          let localNote = UILocalNotification()
-          // 2.设置本地通知的内容
-          // 2.1.设置通知发出的时间
-          localNote.fireDate = NSDate.init(timeIntervalSinceNow: 0.0)
-          // 2.2.设置通知的内容
-          localNote.alertBody = "即将到达-\(self._destinationName!),请提前做好准备!";
-          // 2.3.设置滑块的文字（锁屏状态下：滑动来“解锁”）
-          localNote.alertAction = "关闭提醒";
-          // 2.4.决定alertAction是否生效
-          localNote.hasAction = true;
-          // 2.5.设置点击通知的启动图片
-          localNote.alertLaunchImage = "123";
-          // 2.6.设置alertTitle
-          localNote.alertTitle = "Punctual通知:";
-          // 2.7.设置有通知时的音效
-          localNote.soundName = "buyao.wav";
-          // 2.8.设置应用程序图标右上角的数字
-          //        if UIApplication.sharedApplication().applicationState != .Active {
-          let badge =  UIApplication.sharedApplication().applicationIconBadgeNumber;
-          localNote.applicationIconBadgeNumber = badge + 1;
-          //        }
-          if UIApplication.sharedApplication().applicationState != .Active {
-          }
-          else {
-            localNote.applicationIconBadgeNumber = 0
-            UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-          }
+      if UIApplication.sharedApplication().applicationState == UIApplicationState.Background {
+        if UIApplication.sharedApplication().applicationIconBadgeNumber == 0 {
+          let queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL)
+          dispatch_sync(queue, { 
+            // 1.创建本地通知
+            let localNote = UILocalNotification()
+            // 2.设置本地通知的内容
+            // 2.1.设置通知发出的时间
+            localNote.fireDate = NSDate.init(timeIntervalSinceNow: 0.0)
+            // 2.2.设置通知的内容
+            localNote.alertBody = "即将到达-\(self._destinationName!),请提前做好准备!";
+            // 2.3.设置滑块的文字（锁屏状态下：滑动来“关闭提醒”）
+            localNote.alertAction = "关闭提醒";
+            // 2.4.决定alertAction是否生效
+            localNote.hasAction = true;
+            // 2.5.设置点击通知的启动图片
+            localNote.alertLaunchImage = "123";
+            // 2.6.设置alertTitle
+            localNote.alertTitle = "Punctual通知:";
+            // 2.7.设置有通知时的音效
+            localNote.soundName = "buyao.wav";
+            // 2.8.设置应用程序图标右上角的数字
+            //        if UIApplication.sharedApplication().applicationState != .Active {
+            let badge =  UIApplication.sharedApplication().applicationIconBadgeNumber;
+            localNote.applicationIconBadgeNumber = badge + 1;
+            //        }
+            if UIApplication.sharedApplication().applicationState != .Active {
+            }
+            else {
+              localNote.applicationIconBadgeNumber = 0
+              UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+            }
+            
+            // 2.9.设置额外信息
+            localNote.userInfo = ["type":1]
+            localNote.category = "closeNotiCate"
+            UIApplication.sharedApplication().scheduleLocalNotification(localNote)
+          })
           
-          // 2.9.设置额外信息
-          localNote.userInfo = ["type":1]
-          localNote.category = "closeNotiCate"
-          UIApplication.sharedApplication().scheduleLocalNotification(localNote)
-        })
-        
-      }
+        }
+    }
     }
   }
   
