@@ -80,7 +80,14 @@ extension MineViewController:UITableViewDelegate, UITableViewDataSource, BMKOffl
         cell!.textLabel!.backgroundColor = UIColor.cyanColor()
         cell!.backgroundView?.backgroundColor = UIColor.redColor()
         cell!.textLabel?.backgroundColor = UIColor.cyanColor()
-        cell!.detailTextLabel?.text = NSString(format: "大约%.1fM", CGFloat(record.size) / 1024.0 / 1024.0) as String
+        
+        let element = offlineMap.getUpdateInfo(record.cityID) as BMKOLUpdateElement
+        if element.status == 4 {
+          cell!.detailTextLabel?.text = "已下载"
+        }
+        else {
+          cell!.detailTextLabel?.text = NSString(format: "大约%.1fM", CGFloat(record.size) / 1024.0 / 1024.0) as String
+        }
       }
       else {
         cell!.textLabel!.text = "关于"
@@ -121,7 +128,7 @@ extension MineViewController:UITableViewDelegate, UITableViewDataSource, BMKOffl
         cell.detailTextLabel?.text = downloadProgress as String
         
         if updateInfo.ratio == 100 {
-          cell.detailTextLabel?.text = ""
+          cell.detailTextLabel?.text = "已下载"
         }
       }
       

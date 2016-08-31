@@ -45,10 +45,19 @@ class ViewController: UIViewController {
     setDestination(CLLocation(latitude: 40.066124304797285, longitude: 116.35399725884176), name: "育新")
     // 2、定位
     initLocationService()
-    // 3、POI检索
-    for i in 1..<16 {
-      if i != 3 && i != 11 && i != 12 {
-        initPoiSearch(i)
+    // 3、POI检索 ***（当本地不存在category.json的时候）
+    // 根路径
+    let rootPath = NSHomeDirectory() as NSString
+    // documents路径
+    let documentsPath = rootPath.stringByAppendingPathComponent("Documents") as NSString
+    // 获取文本路径
+    let filePath = documentsPath.stringByAppendingPathComponent("categories.json")
+    let manager  = NSFileManager.defaultManager()
+    if !manager.fileExistsAtPath(filePath) {
+      for i in 1..<16 {
+        if i != 3 && i != 11 && i != 12 {
+          initPoiSearch(i)
+        }
       }
     }
     
@@ -422,59 +431,69 @@ BMKMapViewDelegate, BMKLocationServiceDelegate, BMKBusLineSearchDelegate, BMKPoi
   
   // plusButton点击时触发
   func reloadLineData() {
-    dispatch_async(dispatch_queue_create("concurrent", DISPATCH_QUEUE_CONCURRENT)) {
-      // 生成json字典
-      // 1、meta
-      let meta = ["status": 200,
-                  "msg"   : "OK",
-                  "time"  : "1335541016"
-      ]
-      
-      self._dictionary.setValue(meta, forKey: "meta")
-      
-      // 2、生成lines数组
-      let lineArray = NSMutableArray()
-      for (_, obj) in self._lines!.enumerate() {
-        let line:LineModel = obj as! LineModel
-        let lineDic = line.dictionaryWithLine(line)
-        lineArray.addObject(lineDic)
-      }
-      
-      // 3、生成categories
-      let categories = NSMutableArray()
-      let categoriesDic = ["name":"All Lines",
-                           "url":"www",
-                           "text_color":"#000000",
-                           "border_color":"#000000",
-                           "children":lineArray
-      ]
-      categories.addObject(categoriesDic)
-      
-      // 4、生成response
-      let response = ["categories":categories]
-      
-      // 5、生成字典
-      self._dictionary.setValue(response, forKey: "response")
-//      print("\(self._dictionary)")
-      
-      // 6、生成json
-      let json = JSON(self._dictionary)
-      
-      // 7、写入文件
-      // 根路径
-      let rootPath = NSHomeDirectory() as NSString
-      // documents路径
-      let documentsPath = rootPath.stringByAppendingPathComponent("Documents") as NSString
-      // 获取文本路径
-      let filePath = documentsPath.stringByAppendingPathComponent("categories.json")
-      // 写入
-      do {
-        try json.rawString()!.writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
-      } catch {
-        print("存储json失败")
+    
+    // 根路径
+    let rootPath = NSHomeDirectory() as NSString
+    // documents路径
+    let documentsPath = rootPath.stringByAppendingPathComponent("Documents") as NSString
+    // 获取文本路径
+    let filePath = documentsPath.stringByAppendingPathComponent("categories.json")
+    let manager  = NSFileManager.defaultManager()
+    if !manager.fileExistsAtPath(filePath) {
+    
+      dispatch_async(dispatch_queue_create("concurrent", DISPATCH_QUEUE_CONCURRENT)) {
+        // 生成json字典
+        // 1、meta
+        let meta = ["status": 200,
+                    "msg"   : "OK",
+                    "time"  : "1335541016"
+        ]
+        
+        self._dictionary.setValue(meta, forKey: "meta")
+        
+        // 2、生成lines数组
+        let lineArray = NSMutableArray()
+        for (_, obj) in self._lines!.enumerate() {
+          let line:LineModel = obj as! LineModel
+          let lineDic = line.dictionaryWithLine(line)
+          lineArray.addObject(lineDic)
+        }
+        
+        // 3、生成categories
+        let categories = NSMutableArray()
+        let categoriesDic = ["name":"All Lines",
+                             "url":"www",
+                             "text_color":"#000000",
+                             "border_color":"#000000",
+                             "children":lineArray
+        ]
+        categories.addObject(categoriesDic)
+        
+        // 4、生成response
+        let response = ["categories":categories]
+        
+        // 5、生成字典
+        self._dictionary.setValue(response, forKey: "response")
+  //      print("\(self._dictionary)")
+        
+        // 6、生成json
+        let json = JSON(self._dictionary)
+        
+        // 7、写入文件
+        // 根路径
+        let rootPath = NSHomeDirectory() as NSString
+        // documents路径
+        let documentsPath = rootPath.stringByAppendingPathComponent("Documents") as NSString
+        // 获取文本路径
+        let filePath = documentsPath.stringByAppendingPathComponent("categories.json")
+        // 写入
+        do {
+          try json.rawString()!.writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
+        } catch {
+          print("存储json失败")
+        }
       }
     }
-
   }
   
   // 设置大头针图片， 没有自定义泡泡，以后再说

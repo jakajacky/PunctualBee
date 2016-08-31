@@ -98,13 +98,16 @@ extension DRPlusButton : CYLPlusButtonSubclassing {
         
     })
     
-    let st       = STTableViewController(nibName: nil, bundle: nil)
+    
+    
+    
     let tabBarVC = cyl_tabBarController() as CYLTabBarController
     let homeVC   = tabBarVC.childViewControllers[0] as! UINavigationController
     let vc       = homeVC.childViewControllers[0] as! ViewController
     if i % 2 != 0 {
       vc.reloadLineData() // 获取地铁信息
     }
+    let st       = STTableViewController(nibName: nil, bundle: nil)
     
     // st控制器可透明显示
     homeVC.modalPresentationStyle = .CurrentContext

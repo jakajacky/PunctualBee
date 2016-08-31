@@ -373,6 +373,9 @@ typedef enum
   NSString *filePath = [NSString stringWithFormat:@"%@/%@", jsonPath, @"categories.json"];
   NSData *jsonData = [[NSData alloc] initWithContentsOfFile:filePath];
   NSError *error = nil;
+  if (jsonData == nil) {
+    return;
+  }
   NSDictionary * jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
   [self parseJSON:[[[jsonDict objectForKey:@"response"] objectForKey:@"categories"] objectAtIndex:0] backIndex:-1];
 }

@@ -33,6 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BMKGeneralDelegate, CLLoc
     
     DRPlusButton.registerPlusButton()
     
+    self.setupViewControllers()
+    self.window!.rootViewController = self.tabBarController
+    self.window!.makeKeyAndVisible()
     
     let sysOS = UIDevice.currentDevice().systemVersion as NSString
     if sysOS.doubleValue >= 8.0 && sysOS.doubleValue <= 10.0 {
@@ -64,9 +67,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BMKGeneralDelegate, CLLoc
   func onGetPermissionState(iError: Int32) {
     if iError == 0 {
       print("权鉴成功")
-      self.setupViewControllers()
-      self.window!.rootViewController = self.tabBarController
-      self.window!.makeKeyAndVisible()
+//      self.setupViewControllers()
+//      self.window!.rootViewController = self.tabBarController
+//      self.window!.makeKeyAndVisible()
     }
     else {
       print("权鉴失败")
