@@ -22,6 +22,16 @@ class MineViewController: UIViewController {
     initTableView()
     initOfflineMap()
   }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+  }
+  
+  
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+  }
 
   override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
@@ -77,12 +87,15 @@ extension MineViewController:UITableViewDelegate, UITableViewDataSource, BMKOffl
     case 0:
       if indexPath.section == 0 {
         cell!.textLabel!.text = "离线地图"
-        cell!.textLabel!.backgroundColor = UIColor.cyanColor()
-        cell!.backgroundView?.backgroundColor = UIColor.redColor()
-        cell!.textLabel?.backgroundColor = UIColor.cyanColor()
         
-        let element = offlineMap.getUpdateInfo(record.cityID) as BMKOLUpdateElement
-        if element.status == 4 {
+        // 根路径
+        let rootPath = NSHomeDirectory() as NSString
+        // documents路径
+        let documentsPath = rootPath.stringByAppendingPathComponent("Documents/vmp") as NSString
+        // 获取文本路径
+        let filePath = documentsPath.stringByAppendingPathComponent("beijing_131.dat")
+        let manager  = NSFileManager.defaultManager()
+        if manager.fileExistsAtPath(filePath) {
           cell!.detailTextLabel?.text = "已下载"
         }
         else {
@@ -104,10 +117,21 @@ extension MineViewController:UITableViewDelegate, UITableViewDataSource, BMKOffl
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if indexPath.row == 0 && indexPath.section == 0 {
-      
-      offlineMap.remove(record.cityID)
       offlineMap.start(record.cityID)
     }
+    else if indexPath.row == 1 && indexPath.section == 0 {
+      offlineMap.remove(record.cityID)
+      tableView.reloadData()
+    }
+    else {
+      let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+      let about = storyBoard.instantiateViewControllerWithIdentifier("about")
+      
+      self.presentViewController(about, animated: true, completion: { 
+        
+      })
+    }
+    
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   

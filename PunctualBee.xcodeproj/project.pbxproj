@@ -23,6 +23,7 @@
 		F24BBDF91D59BBB600C3B558 /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24BBDF41D59BBB600C3B558 /* CYLTabBarController.m */; };
 		F24BBDFA1D59BBB600C3B558 /* UIViewController+CYLTabBarControllerExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = F24BBDF61D59BBB600C3B558 /* UIViewController+CYLTabBarControllerExtention.m */; };
 		F24BBE011D59D81C00C3B558 /* DRPlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24BBE001D59D81C00C3B558 /* DRPlusButton.swift */; };
+		F24DDA051D704D8400DB3150 /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24DDA041D704D8400DB3150 /* MineViewController.swift */; };
 		F25D8CEB1D5449FF0091815E /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = F25D8CEA1D5449FF0091815E /* Property List.plist */; };
 		F2A3EF991D6C2819009E204C /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = F2A3EF981D6C2819009E204C /* pin.png */; };
 		F2A3EF9F1D6C38E2009E204C /* Pin-.png in Resources */ = {isa = PBXBuildFile; fileRef = F2A3EF9E1D6C38E2009E204C /* Pin-.png */; };
@@ -31,6 +32,7 @@
 		F2BED8F61D503AC5005FEC9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2BED8F41D503AC5005FEC9D /* LaunchScreen.storyboard */; };
 		F2DCBAA11D5C8FB600DB7DF4 /* CustomPresentationAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DCBA9F1D5C8FB600DB7DF4 /* CustomPresentationAnimationController.swift */; };
 		F2DCBAA21D5C8FB600DB7DF4 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DCBAA01D5C8FB600DB7DF4 /* CustomPresentationController.swift */; };
+		F2DEEBA51D76C7D500E92A29 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DEEBA41D76C7D500E92A29 /* AboutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,6 +77,7 @@
 		F24BBDF51D59BBB600C3B558 /* UIViewController+CYLTabBarControllerExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CYLTabBarControllerExtention.h"; sourceTree = "<group>"; };
 		F24BBDF61D59BBB600C3B558 /* UIViewController+CYLTabBarControllerExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CYLTabBarControllerExtention.m"; sourceTree = "<group>"; };
 		F24BBE001D59D81C00C3B558 /* DRPlusButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DRPlusButton.swift; sourceTree = "<group>"; };
+		F24DDA041D704D8400DB3150 /* MineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
 		F25D8CEA1D5449FF0091815E /* Property List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
 		F2A3EF981D6C2819009E204C /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		F2A3EF9E1D6C38E2009E204C /* Pin-.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pin-.png"; sourceTree = "<group>"; };
@@ -85,6 +88,7 @@
 		F2BED8F71D503AC5005FEC9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2DCBA9F1D5C8FB600DB7DF4 /* CustomPresentationAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentationAnimationController.swift; sourceTree = "<group>"; };
 		F2DCBAA01D5C8FB600DB7DF4 /* CustomPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
+		F2DEEBA41D76C7D500E92A29 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		F46432EB1EB474D723DDB2D9 /* Pods-PunctualBee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PunctualBee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PunctualBee/Pods-PunctualBee.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				F24BBDD51D5883F500C3B558 /* ViewController.swift */,
+				F24DDA041D704D8400DB3150 /* MineViewController.swift */,
+				F2DEEBA41D76C7D500E92A29 /* AboutViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -355,6 +361,8 @@
 				F24BBE011D59D81C00C3B558 /* DRPlusButton.swift in Sources */,
 				F24BBDE51D597C8600C3B558 /* STCategory.m in Sources */,
 				F24BBDE81D597C8600C3B558 /* UIColor+HexString.m in Sources */,
+				F2DEEBA51D76C7D500E92A29 /* AboutViewController.swift in Sources */,
+				F24DDA051D704D8400DB3150 /* MineViewController.swift in Sources */,
 				F24BBDF91D59BBB600C3B558 /* CYLTabBarController.m in Sources */,
 				F24BBDE61D597C8600C3B558 /* STTableViewCell.m in Sources */,
 				F24BBDF81D59BBB600C3B558 /* CYLTabBar.m in Sources */,

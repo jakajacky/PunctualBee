@@ -116,6 +116,9 @@ extension DRPlusButton : CYLPlusButtonSubclassing {
     // UIPresentationController自定义转场动画方式
     st.modalPresentationStyle = UIModalPresentationStyle.Custom
     st.transitioningDelegate = st
+    st.tableView.layer.cornerRadius = 10
+    st.tableView.layer.masksToBounds = true
+    
     
     // 关联STTableViewController与ViewController
     

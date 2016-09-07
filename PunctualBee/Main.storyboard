@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pXv-QC-UTz">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--About View Controller-->
         <scene sceneID="8hg-xp-aIN">
             <objects>
-                <viewController id="pXv-QC-UTz" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="about" id="pXv-QC-UTz" customClass="AboutViewController" customModule="PunctualBee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1AC-hO-qV6"/>
                         <viewControllerLayoutGuide type="bottom" id="yGu-am-tYY"/>
@@ -15,7 +17,35 @@
                     <view key="view" contentMode="scaleToFill" id="v5R-m3-rpp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="当前版本只支持北京地区地图标注的点击选择目的地操作、以及通过+按钮选择指定的北京15条主要地铁线站点，更多内容请关注后续版本更新" translatesAutoresizingMaskIntoConstraints="NO" id="RK4-zc-QFu">
+                                <rect key="frame" x="40" y="70" width="520" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="oZW-tx-LSg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="本应用需要使用设备的GPS定位，并需要后台持续定位，来确定位置，可能会对设备电量损耗较大" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="em5-4M-Jib">
+                                <rect key="frame" x="40" y="194" width="520" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="CHb-N6-zPp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RK4-zc-QFu" firstAttribute="leading" secondItem="v5R-m3-rpp" secondAttribute="leadingMargin" constant="20" id="0TY-p1-z0B"/>
+                            <constraint firstItem="em5-4M-Jib" firstAttribute="top" secondItem="RK4-zc-QFu" secondAttribute="bottom" constant="44" id="1sM-dP-AJd"/>
+                            <constraint firstItem="em5-4M-Jib" firstAttribute="leading" secondItem="v5R-m3-rpp" secondAttribute="leadingMargin" constant="20" id="Eie-Vb-kq2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RK4-zc-QFu" secondAttribute="trailing" constant="20" id="KrD-fL-TZ0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="em5-4M-Jib" secondAttribute="trailing" constant="20" id="jQz-V9-A6m"/>
+                            <constraint firstItem="RK4-zc-QFu" firstAttribute="top" secondItem="1AC-hO-qV6" secondAttribute="bottom" constant="50" id="zcK-ex-MQu"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HGR-WC-vNr" userLabel="First Responder" sceneMemberID="firstResponder"/>

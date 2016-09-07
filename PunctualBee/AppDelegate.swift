@@ -215,6 +215,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BMKGeneralDelegate, CLLoc
     return category
   }
   
+  func close() {
+    
+  }
+  
 }
 
 

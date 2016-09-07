@@ -39,6 +39,8 @@ class ViewController: UIViewController {
     self.title = "首页"
     self.automaticallyAdjustsScrollViewInsets = false
     
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "关闭提醒", style: .Plain, target: self, action:#selector(close))
+    
     // 1、基础地图
     initBaseMapView()
     // 初始化在育新
@@ -207,6 +209,7 @@ class ViewController: UIViewController {
     _mapView?.delegate       = nil // 不用时，置nil
     _locService?.delegate    = nil
     _searchBusLine?.delegate = nil
+
   }
   
   override func didReceiveMemoryWarning() {
@@ -538,6 +541,10 @@ BMKMapViewDelegate, BMKLocationServiceDelegate, BMKBusLineSearchDelegate, BMKPoi
 //        }
 //    
 //  }
+  
+  func close() {
+    limitDistance = -1000.0
+  }
   
   
 }
