@@ -127,9 +127,8 @@ extension MineViewController:UITableViewDelegate, UITableViewDataSource, BMKOffl
       let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
       let about = storyBoard.instantiateViewControllerWithIdentifier("about")
       
-      self.presentViewController(about, animated: true, completion: { 
-        
-      })
+      
+      self.navigationController?.pushViewController(about, animated: true)
     }
     
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
